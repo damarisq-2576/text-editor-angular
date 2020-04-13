@@ -1,0 +1,51 @@
+<app-header [title]="title"></app-header>
+<div class="container">
+  <main>
+
+
+    <editor-file id="myeditor"></editor-file>
+
+    <span>
+      Existing Synonyms for: <b> {{synFor}} </b>
+    </span>
+
+    <div>
+      <button class="angular-editor-button" (click)="searchSyn()">Synonyms</button>
+    </div>
+    <div [hidden]="!showSection">
+      <ng-container *ngIf="showSynon">
+        <div>
+          <span class="small-text fullwidth">
+            Click the word you wanted to replace on the text
+          </span>
+        </div>
+        <div class="row-div">
+          <div class="half-width">
+            <ul>
+              <li *ngFor="let synon of allSynons">
+                <span class="link-word" (mouseover)="setDefinition(synon.word)" (click)="replaceWord(synon.word)">
+                  {{synon.word}} </span>
+              </li>
+            </ul>
+          </div>
+          <div class="half-width">
+
+            <ng-container *ngFor="let def of defObj">
+              <span>Definition of {{def.word}} </span> <br>
+              <span> {{def.definition}} </span>
+
+            </ng-container>
+
+          </div>
+        </div>
+
+      </ng-container>
+
+      <span *ngIf="!showSynon" class="small-text">
+        {{errorMsg}}
+      </span>
+    </div>
+
+  </main>
+</div>
+<app-footer></app-footer>

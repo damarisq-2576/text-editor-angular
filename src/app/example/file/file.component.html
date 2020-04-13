@@ -1,0 +1,14 @@
+<div class="editor-style" #angularEditor >
+
+
+  <editor-control-panel (execute)="executeCommand($event)" #editorToolbar></editor-control-panel>
+
+  <div class="file-wrapper" #editorWrapper>
+
+    <div #editor class="editor-textarea file" contentEditable="true">
+      {{text$ | async}}
+    </div>
+
+  </div>
+
+</div>

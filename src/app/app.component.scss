@@ -1,0 +1,45 @@
+:host {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  background-color: #f1f0f0;
+}
+.container {
+  max-width: 700px;
+  margin: auto;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow-y: auto;
+  font-family: Arial, Helvetica, sans-serif;
+  .row-div {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    max-width: 630px;
+    .full-width {
+
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+    .half-width {
+      flex: 0 0 50%;
+    max-width: 50%;
+    }
+  }
+
+  span {
+    color: #ffa500;
+  }
+  span.small-text {
+    color: #000000;
+    font-size: 12px;
+  }
+  span.link-word {
+    color: #4f4fff;
+    text-decoration: underline;
+  }
+}
