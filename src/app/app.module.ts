@@ -1,17 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 
-import { FileComponent } from './example/file/file.component';
-import { ControlPanelComponent } from './example/control-panel/control-panel.component';
-import { HeaderComponent } from './example/header/header.component';
+import { FileComponent } from './file/file.component';
+import { ControlPanelComponent } from './control-panel/control-panel.component';
+import { HeaderComponent } from './header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FooterComponent } from './example/footer/footer.component';
+import { FooterComponent } from './footer/footer.component';
 
-import { TextService } from './example/_services/text.service';
+import { TextService } from './_services/text.service';
 
 
 
@@ -28,7 +27,6 @@ import {HttpClientModule} from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     CommonModule,

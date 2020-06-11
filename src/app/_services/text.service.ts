@@ -27,8 +27,8 @@ export class TextService {
     return this.http.get<any>('https://api.datamuse.com/words?rel_syn=' + word);
   }
 
-  getDefinition(word: string){
-    return this.http.get<any>('https://api.datamuse.com/words?sp='+word+'&md=d');
+  getDefinition(word: string) {
+    return this.http.get<any>('https://api.datamuse.com/words?sp=' + word + '&md=d');
 
   }
   executeCommand(command: string) {
@@ -36,9 +36,7 @@ export class TextService {
     this.saveSelection();
   }
 
-  /*
-   * save the selection
-   */
+
   public saveSelection = (): void => {
     if (this.doc.getSelection) {
       const sel = this.doc.getSelection();
@@ -47,34 +45,23 @@ export class TextService {
         this.selectedText = sel.toString();
       }
     }
-    // else if (this.doc.getSelection && this.doc.createRange) {
-    //   this.savedSelection = document.createRange();
-    // } else {
-    //   this.savedSelection = null;
-    // }
   }
 
-
+/* replace word creating a new DOM element */
   replaceSynom(newWord) {
-
-
-   let sel = this.savedSelection;
-
+    let sel = this.savedSelection;
     let newNode = document.createElement("synom");
-
+    newNode.setAttribute("id", "synom")
     newNode.appendChild(document.createTextNode(newWord));
-
-    if(sel.toString() !== newWord){
+  
+    if (sel.toString() !== newWord) {
       sel.deleteContents();
-    }
-
-    sel.insertNode(newNode);
-
-
+      sel.insertNode(newNode);
+    } 
   }
-  /** check any selection is made or not */
-  checkSelection(): any {
 
+  /* check any selection is made or not */
+  checkSelection(): any {
     const selectedText = this.savedSelection.toString();
     if (selectedText.length === 0) {
       return false;

@@ -1,10 +1,7 @@
-import {
+import { ChangeDetectorRef,
   ChangeDetectionStrategy, Component, OnInit,
   ViewChild,
-  Attribute,
   Input,
-  Output,
-  EventEmitter,
   Inject,
   ElementRef
 } from '@angular/core';
@@ -16,7 +13,6 @@ import { DOCUMENT } from '@angular/common';
   selector: 'editor-file',
   templateUrl: './file.component.html',
   styleUrls: ['./file.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FileComponent implements OnInit {
 
@@ -27,22 +23,13 @@ export class FileComponent implements OnInit {
   @ViewChild('editorToolbar', { static: false }) editorToolbar: ControlPanelComponent;
 
 
-  modeVisual = true;
-  showPlaceholder = false;
-  disabled = false;
-  focused = false;
-  touched = false;
-  changed = false;
-
-  userSelection;
-  @Output('focus') focusEvent: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
+  userSelection: any;
 
   @Input() id = '';
   constructor(
+    private cd: ChangeDetectorRef,
     private textService: TextService,
-    @Inject(DOCUMENT) private doc: any,
-    private editorService: TextService,
-    @Attribute('autofocus') private autoFocus: any
+    @Inject(DOCUMENT) private doc: any
   ) {
   }
 
@@ -51,25 +38,19 @@ export class FileComponent implements OnInit {
     this.text$ = this.textService.getMockText();
   }
 
-
-
   executeCommand(command: string) {
     this.textArea.nativeElement.focus();
-    this.editorService.executeCommand(command);
+    this.textService.executeCommand(command);
     this.exec();
   }
 
-
   exec() {
-
-
     if (this.doc.getSelection) {
       this.userSelection = this.doc.getSelection();
     }
     let a = this.userSelection.focusNode;
-
     const allSelection = [];
-    while (a && a.id !== 'editor') {
+    while (a && a.id !== 'myeditor') {
       allSelection.unshift(a);
       a = a.parentNode;
     }
